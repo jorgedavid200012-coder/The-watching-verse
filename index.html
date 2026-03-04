@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WEIRDGEDDON PORTAL</title>
+
+<style>
+body{
+background:black;
+color:#00ffea;
+font-family:monospace;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* glow */
+h1{
+text-shadow:0 0 20px cyan;
+}
+
+/* buttons */
+button{
+background:black;
+color:cyan;
+border:2px solid cyan;
+padding:10px;
+margin:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:cyan;
+color:black;
+}
+
+/* hidden sections */
+.section{
+display:none;
+margin-top:30px;
+}
+
+/* glitch */
+.glitch{
+animation:glitch .3s infinite;
+}
+
+@keyframes glitch{
+0%{transform:translate(1px);}
+50%{transform:translate(-1px);}
+100%{transform:translate(1px);}
+}
+
+/* shop cards */
+.card{
+border:1px solid cyan;
+padding:15px;
+margin:10px;
+display:inline-block;
+width:200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="glitch">WEIRDGEDDON PORTAL</h1>
+
+<button onclick="show('portal')">ENTER</button>
+<button onclick="show('shop')">LA ROACHES THINGS & STUFF</button>
+<button onclick="show('terminal')">SECRET TERMINAL</button>
+
+<!-- PORTAL -->
+<div id="portal" class="section">
+<h2>REALITY STATUS</h2>
+<div id="countdown"></div>
+</div>
+
+<!-- SHOP -->
+<div id="shop" class="section">
+<h2>LA ROACHES THINGS & STUFF</h2>
+
+<div class="card">
+Reality Stabilizer<br>$9999
+<button onclick="alert('OUT OF STOCK')">BUY</button>
+</div>
+
+<div class="card">
+Dimensional Snack<br>$66
+<button onclick="alert('REALITY ERROR')">BUY</button>
+</div>
+
+<div class="card">
+Cipher Plush<br>$13
+<button onclick="alert('PORTAL JAMMED')">BUY</button>
+</div>
+
+</div>
+
+<!-- TERMINAL -->
+<div id="terminal" class="section">
+<h2>ENTER ACCESS CODE</h2>
+
+<input id="code">
+<button onclick="checkCode()">ENTER</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+
+/* PAGE SWITCH */
+function show(id){
+document.querySelectorAll(".section")
+.forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+/* COUNTDOWN */
+let countDate =
+new Date("Mar 6, 2026 18:00:00 GMT-0600").getTime();
+
+setInterval(function(){
+
+let now=new Date().getTime();
+let d=countDate-now;
+
+let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((d%(1000*60*60))/(1000*60));
+let s=Math.floor((d%(1000*60))/1000);
+
+document.getElementById("countdown")
+.innerHTML=h+"h "+m+"m "+s+"s";
+
+if(d<0){
+document.getElementById("countdown")
+.innerHTML="REALITY COLLAPSED";
+}
+
+},1000);
+
+/* SECRET CODES */
+function checkCode(){
+
+let code=document
+.getElementById("code")
+.value.toLowerCase();
+
+let r=document.getElementById("result");
+
+if(code=="mario"){
+r.innerHTML="🍄 MARIO MINIGAME UNLOCKED";
+}
+
+else if(code=="animal crossing"){
+r.innerHTML="🌿 ANIMAL CROSSING MODE";
+}
+
+else if(code=="sonic"){
+r.innerHTML="💨 SONIC SPEED DETECTED";
+}
+
+else if(code=="blox"){
+r.innerHTML="🧱 BLOX WORLD ACCESS";
+}
+
+else if(code=="minecraft"){
+r.innerHTML=
+"<img src='https://picsum.photos/400'>";
+}
+
+else{
+r.innerHTML="ACCESS DENIED";
+}
+}
+
+</script>
+
+</body>
+</html>
